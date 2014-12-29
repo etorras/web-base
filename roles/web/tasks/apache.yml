@@ -10,7 +10,7 @@
   template: src=web.conf dest=/etc/apache2/sites-available/
 
 - name: Enable site
-  command: a2ensite web
+  command: a2ensite web.conf
 
 - name: Ensure apache is running
   service: name=apache2 state=restarted

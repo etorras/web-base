@@ -5,6 +5,8 @@
   pre_tasks:
     - name: update apt cache
       apt: update_cache=yes
+    - name: install curl
+      apt: name=curl update_cache=yes
   roles:
     - { role: apache }
     - { role: php }

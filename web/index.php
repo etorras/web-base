@@ -19,7 +19,7 @@ use Assetic\Factory\Worker\CacheBustingWorker;
 $factory = new AssetFactory('./assets/');
 $factory->addWorker(new CacheBustingWorker());
 
-$loader = new Twig_Loader_Filesystem(['./', '../templates']);
+$loader = new Twig_Loader_Filesystem(array('./', '../templates'));
 $twig = new Twig_Environment($loader);
 $twig->addExtension(new AsseticExtension($factory));
 
@@ -27,10 +27,10 @@ $template = $twig->loadTemplate('index.html.twig');
 $am = new LazyAssetManager($factory);
 $am->setLoader('twig', new TwigFormulaLoader($twig));
 
-$templates = [
+$templates = array(
     'index.html.twig',
     'template.html.twig'
-];
+);
 foreach ($templates as $templ) {
     $resource = new TwigResource($loader, $templ);
     $am->addResource($resource, 'twig');
@@ -42,4 +42,4 @@ $am->addResource($resource, 'twig');
 $writer = new AssetWriter('./');
 $writer->writeManagerAssets($am);
 
-echo $template->render([]);
+echo $template->render(array());
